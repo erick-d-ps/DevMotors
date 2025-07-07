@@ -8,7 +8,7 @@ export function Header() {
   const [top, setTop] = useState(true)
 
   const scrollHandler = () => {
-    window.scrollY > 10 ? setTop(false) : setTop(false)
+    window.scrollY > 10 ? setTop(false) : setTop(true)
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function Header() {
           </div>
 
           <nav className={styles.nav}>
-            <Link href="/">Home</Link>
+            <Link href="/">HOME</Link>
             <Link href="/#sericos">SERVIÇOS</Link>
             <Link href="/#contatos">CONTATOS</Link>
           </nav>
