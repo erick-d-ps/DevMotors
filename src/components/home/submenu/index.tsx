@@ -32,7 +32,7 @@ export function Submenu() {
         <Menu size={34} color="#121212" />
         Serviços
       </div>
-      /*se tiver em isopem usar o estilo opem se nao "" */
+      
       <ul className={`${styles.ul} ${isOpen ? styles.open : ""}`}>
 
         {isOpen && (
