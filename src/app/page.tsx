@@ -1,24 +1,30 @@
+import { Container } from "@/components/container";
 import { Hero } from "@/components/hero";
-import { Submenu } from "@/components/home/submenu"
-import { getDataHome } from '@/utils/actions/get-data'
+import { Services } from "@/components/home/services";
+import { Submenu } from "@/components/home/submenu";
+import { getDataHome } from "@/utils/actions/get-data";
 import { HomeProps } from "@/utils/home.type";
-import { Phone } from "lucide-react"
-
+import { Phone } from "lucide-react";
 
 export default async function Home() {
   const { object }: HomeProps = await getDataHome();
-  console.log(object.title)
+  console.log(object.title);
 
   return (
     <main>
-      <Submenu/>
+      <Submenu />
       <Hero
-       heading={object.metadata.heading}
-       buttonTitle={object.metadata.cta_button.title}
-       bannerUrl={object.metadata.baner.url}
-       buttonUrl={object.metadata.cta_button.url}
-       icon={<Phone size={24} color="#fff"/>}
+        heading={object.metadata.heading}
+        buttonTitle={object.metadata.cta_button.title}
+        bannerUrl={object.metadata.baner.url}
+        buttonUrl={object.metadata.cta_button.url}
+        icon={<Phone size={24} color="#fff" />}
       />
+      <Container>
+        <Services
+          object={object}
+        />
+      </Container>
     </main>
   );
 }
