@@ -23,7 +23,7 @@ export function Services({ object }: HomeProps) {
 
       <h2 className={styles.servicesTitle}>Conheça nossos serviços</h2>
 
-      <section className={styles.services}>
+      <section className={styles.services} id="sericos">
 
           {object.metadata.services.map((service) => (
             <article key={service.description} className={styles.service}>

@@ -81,6 +81,7 @@
   gap: 24px;
   flex-direction: column;
 }
+
 .service p {
   text-align: center;
   margin: 8px 0;
@@ -110,5 +111,26 @@
   }
   + p {
     font-weight: bold;
+  }
+}
+
+//responsividade
+
+@media (min-width: 640px){
+  .services {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inerService{
+    width: 280px;
+    height: 200px;
+  }
+
+  .servicesTitle{
+    margin-top: 55px;
+    font-size: 30px
   }
 }
