@@ -1,5 +1,6 @@
 import { Container } from "@/components/container";
 import { Hero } from "@/components/hero";
+import { Footer } from "@/components/home/footur";
 import { Services } from "@/components/home/services";
 import { Submenu } from "@/components/home/submenu";
 import { getDataHome } from "@/utils/actions/get-data";
@@ -21,9 +22,8 @@ export default async function Home() {
         icon={<Phone size={24} color="#fff" />}
       />
       <Container>
-        <Services
-          object={object}
-        />
+        <Services object={object} />
+        <Footer object={object} />
       </Container>
     </main>
   );
