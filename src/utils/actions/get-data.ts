@@ -33,3 +33,37 @@ export async function getSubMenu(){
     throw new Error("failed to fetch menu data")
   }
 }
+
+//aqui o processo de consumir a api com base na slug ao em vez do id 
+export async function getItemBySlug( itemSlug: string ){
+   const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/objects`
+
+   // definindo o objeto por consulta pelo slug
+   const queryParams = new URLSearchParams({
+    query: JSON.stringify({
+      slug: itemSlug
+    }),
+    props: 'slug,title,content,metadata',
+    read_key: process.env.READ_KEY as string
+   })
+
+   //montando a url completa 
+   const url = `${baseUrl}?${queryParams.toString()}`
+
+   try{//fazer a req pelo fetch 
+    const res = await fetch(url, { next: { revalidate: 120 } })
+
+    if(!res.ok){ // se não tiver ok a res tratar o erro
+      throw new Error("failed get item by slug")
+    }
+
+    //retornar como json()
+    return res.json();
+
+   }catch(err){
+      throw new Error("failed get item by slug")
+   }
+
+
+
+}
