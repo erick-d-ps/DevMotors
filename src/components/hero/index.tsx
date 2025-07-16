@@ -36,6 +36,7 @@ export function Hero({
           priority={true}
           quality={100}
           fill={true}
+          sizes="100vw" 
        />
 
       </div>

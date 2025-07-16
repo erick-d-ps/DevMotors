@@ -16,6 +16,7 @@ export function Services({ object }: HomeProps) {
             alt="Imagerm iluestrativa sobre a empresa"
             quality={100}
             fill={true}
+            sizes="100%"
             src={object.metadata.about.banner.url}
           />
         </div>
@@ -33,6 +34,7 @@ export function Services({ object }: HomeProps) {
                   alt="Imagem do serviço"
                   quality={100}
                   fill={true}
+                  sizes="100%"
                   src={service.image.url}
                 />
               </div>
