@@ -48,12 +48,14 @@ export function Submenu({menu}: SubMenuProp) {
           </button>
         )}
 
-        <li>
-          <Link href="/post/pagina-1">Pagina 1</Link>
-        </li>
-        <li>
-        <Link href="/post/pagina-2">Pagina 2</Link>
-        </li>
+        {menu.objects.map(item => (
+          <li key={item.title}>
+            <Link href={`/post/${item.slug}`}>
+              {item.title}
+            </Link>
+          </li>
+        ))}
+  
       </ul>
     </section>
   );
