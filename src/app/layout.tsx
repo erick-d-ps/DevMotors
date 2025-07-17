@@ -24,6 +24,9 @@ export default function RootLayout({
       <body>
         <Header/>
         {children}
+        <p style={{ textAlign: "center", marginTop: 54, marginBottom: 14}}>
+        Todos diritos reservados DevMotors @{`${new Date().getFullYear()}`}
+      </p>
       </body>
     </html>
   );
