@@ -1,21 +1,70 @@
 import styles from "./styles.module.scss";
 import { getItemBySlug } from "@/utils/actions/get-data";
-import { PostProps } from '@/utils/post.type'
+import { PostProps } from "@/utils/post.type";
 import { Hero } from "@/components/hero";
 import { Phone } from "lucide-react";
 import { Container } from "@/components/container";
 import Image from "next/image";
+import { Metadata } from "next";
+import { title } from "process";
+
+export async function generateMetadata({
+  params: paramsPromise,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  try {
+    const params = await paramsPromise;
+    const { slug } = params;
+
+    const { objects }: PostProps = await getItemBySlug(slug).catch(() => {
+      return {
+        title: "DevMotors - sua oficina especializada!",
+        description: "Oficina de carros em Paraníba",
+      };
+    });
+
+    return {
+      title: `Devmotors - ${objects[0].title}`,
+      description: `${objects[0].metadata.description.text}`,
+      keywords: [
+        "DevMotors",
+        `${objects[0].title}`,
+        `DevMotors ${objects[0].title}`
+      ],
+      openGraph: {
+        title: `Devmotors - ${objects[0].title}`,
+        images: [`${objects[0].metadata.description.button_url}`],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          noimageindex: true,
+        },
+      },
+    };
+  } catch (err) {
+    return {
+      title: "DevMotors - sua oficina especializada!",
+      description: "Oficina de carros em Paraníba",
+    };
+  }
+}
 
 export default async function Page({
   params: paramsPromise,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-    const params = await paramsPromise;
-    const { slug } = params
+  const params = await paramsPromise;
+  const { slug } = params;
 
-    const {objects}: PostProps = await getItemBySlug(slug);
-    
+  const { objects }: PostProps = await getItemBySlug(slug);
+
   return (
     <>
       <Hero
@@ -34,15 +83,14 @@ export default async function Page({
             <p>{objects[0].metadata.description.text}</p>
 
             {objects[0].metadata.description.button_active && (
-              <a 
-              href={objects[0].metadata.description.button_url as string}
-              target="_blank"
-              className={styles.link}
+              <a
+                href={objects[0].metadata.description.button_url as string}
+                target="_blank"
+                className={styles.link}
               >
                 {objects[0].metadata.description.button_title}
               </a>
             )}
-
           </article>
           <div className={styles.bannerAbout}>
             <Image
