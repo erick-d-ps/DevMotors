@@ -31,7 +31,7 @@ export async function generateMetadata({
       ],
       openGraph: {
         title: `Devmotors - ${objects[0].title}`,
-        images: [`${objects[0].metadata.description.button_url}`],
+        images: [`${objects[0].metadata.description.banner}`],
       },
       robots: {
         index: true,
